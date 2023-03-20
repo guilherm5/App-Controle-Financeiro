@@ -38,7 +38,7 @@
 
 > Postgresql 
 
-<p>We also have the user verification, if the user does not exist in our database, it returns an error saying that the user does not exist.</p>
+<p>We also haave the user verification, if the user does not exist in our database, it returns an error saying that the user does not exist.</p>
 
 <p>
 We also have jwt token verification, I did this using a middleware, if the token is invalid or expired, our routes will not be authenticated.</p>

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
@@ -13,6 +12,7 @@ import (
 
 func main() {
 	database.DBConnection()
+
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("Erro ao carregar variavel de ambiente para definir porta HTTP")
@@ -37,9 +37,4 @@ func main() {
 
 	Api.Run(port)
 
-	salario := 2000
-	despesas := 700
-
-	total := despesas / salario * 100
-	fmt.Println(total)
 }

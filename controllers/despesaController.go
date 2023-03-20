@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -14,9 +15,52 @@ import (
 
 func GetDespesas() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		err := godotenv.Load("./.env")
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"Erro ao acessar arquivo .env para carregar secret key": err,
+			})
+			log.Println("Erro ao acessar arquivo .env para carregar secret key ", err)
+			return
+		}
+		secret := os.Getenv("SECRET")
+
+		tokenString := c.GetHeader("Authorization")
+		token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+			return []byte(secret), nil
+		})
+		if err != nil || !token.Valid {
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"Message": "Token JWT inválido",
+			})
+			log.Println("Token JWT inválido ", err)
+			return
+		}
+
+		claims, ok := token.Claims.(jwt.MapClaims)
+		if !ok {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"Message": "Erro ao obter claims do token JWT",
+			})
+			log.Println("Erro ao obter claims do token JWT")
+			return
+		}
+
+		sub, ok := claims["sub"].(float64)
+		if !ok {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"Erro ao obter ID do usuario a partir do token JWT": err,
+			})
+			log.Println("Erro ao obter ID do usuario a partir do token JWT", err)
+			return
+		}
+
+		IDJwt := int(sub)
 		var getDespesas []models.Despesas
 
-		rows, err := DB.Query(`SELECT * FROM despesas`)
+		QueryDespesas := fmt.Sprintf("SELECT * FROM despesas WHERE id_user = %v", IDJwt)
+
+		rows, err := DB.Query(QueryDespesas)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"Erro ao realizar select na tabela despesas ": err,

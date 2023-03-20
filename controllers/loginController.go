@@ -66,9 +66,9 @@ func LoginUser() gin.HandlerFunc {
 		err = bcrypt.CompareHashAndPassword([]byte(usuario.SecretUser), []byte(login.Secret))
 		if err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H{
-				"Erro": err,
+				"Senha incorreta": err,
 			})
-			log.Println("erro", err)
+			log.Println("Senha incorreta", err)
 			return
 		}
 

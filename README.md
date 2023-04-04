@@ -1,4 +1,4 @@
-![Exemplo de uso](http://g.recordit.co/80BLAHwY4Y.gif)
+![Exemplo de uso](http://g.recordit.co/kerLONSUni.gif)
 
 # Simple project for financial control
 

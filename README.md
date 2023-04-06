@@ -1,6 +1,6 @@
-![Exemplo de uso](./vzytdIOoDo.gif)
-
 # Simple project for financial control
+
+![Exemplo de uso](./vzytdIOoDo.gif)
 
 <p>This project was born out of a personal need to control my finances.</p>
 

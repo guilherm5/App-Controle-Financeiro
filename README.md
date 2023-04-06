@@ -1,4 +1,4 @@
-![Exemplo de uso](http://g.recordit.co/kerLONSUni.gif)
+![Exemplo de uso](http://g.recordit.co/vzytdIOoDo.gif)
 
 # Simple project for financial control
 
@@ -43,6 +43,6 @@
 <p>
 We also have jwt token verification, I did this using a middleware, if the token is invalid or expired, our routes will not be authenticated.</p>
 
-![Exemplo de uso](http://g.recordit.co/kerLONSUni.gif)
+
 
 

@@ -1,4 +1,4 @@
-![Exemplo de uso](http://g.recordit.co/vzytdIOoDo.gif)
+![Exemplo de uso](./vzytdIOoDo.gif)
 
 # Simple project for financial control
 
